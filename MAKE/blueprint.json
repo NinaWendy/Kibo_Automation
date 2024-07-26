@@ -1,0 +1,2642 @@
+{
+    "name": "Integrate Typeform, Airtable & Gmail",
+    "flow": [
+        {
+            "id": 1,
+            "module": "typeform:WatchEventsWithResponses",
+            "version": 2,
+            "parameters": {
+                "__IMTHOOK__": 744613
+            },
+            "mapper": {},
+            "metadata": {
+                "designer": {
+                    "x": 0,
+                    "y": 150
+                },
+                "restore": {
+                    "parameters": {
+                        "__IMTHOOK__": {
+                            "data": {
+                                "editable": "true"
+                            },
+                            "label": "My Typeform Events webhook"
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "__IMTHOOK__",
+                        "type": "hook:typeform",
+                        "label": "Webhook",
+                        "required": true
+                    }
+                ],
+                "interface": [
+                    {
+                        "name": "form_id",
+                        "type": "text",
+                        "label": "Form ID"
+                    },
+                    {
+                        "name": "event",
+                        "spec": [
+                            {
+                                "name": "id",
+                                "type": "text",
+                                "label": "ID"
+                            },
+                            {
+                                "name": "type",
+                                "type": "text",
+                                "label": "Type"
+                            }
+                        ],
+                        "type": "collection",
+                        "label": "Event"
+                    },
+                    {
+                        "name": "token",
+                        "type": "text",
+                        "label": "Token"
+                    },
+                    {
+                        "name": "submitted_at",
+                        "type": "date",
+                        "label": "Submitted at"
+                    },
+                    {
+                        "name": "landed_at",
+                        "type": "date",
+                        "label": "Landed at"
+                    },
+                    {
+                        "name": "calculated",
+                        "spec": [
+                            {
+                                "name": "score",
+                                "type": "number",
+                                "label": "Score"
+                            }
+                        ],
+                        "type": "collection",
+                        "label": "Calculated"
+                    },
+                    {
+                        "name": "definition",
+                        "spec": [
+                            {
+                                "name": "id",
+                                "type": "text",
+                                "label": "ID"
+                            },
+                            {
+                                "name": "title",
+                                "type": "text",
+                                "label": "Title"
+                            },
+                            {
+                                "name": "fields",
+                                "spec": {
+                                    "spec": [
+                                        {
+                                            "name": "id",
+                                            "type": "text",
+                                            "label": "ID"
+                                        },
+                                        {
+                                            "name": "title",
+                                            "type": "text",
+                                            "label": "Title"
+                                        },
+                                        {
+                                            "name": "type",
+                                            "type": "text",
+                                            "label": "Type"
+                                        },
+                                        {
+                                            "name": "ref",
+                                            "type": "text",
+                                            "label": "Internal Name"
+                                        },
+                                        {
+                                            "name": "allow_multiple_selections",
+                                            "type": "boolean",
+                                            "label": "Allow Multiple Selections"
+                                        },
+                                        {
+                                            "name": "allow_other_choice",
+                                            "type": "boolean",
+                                            "label": "Allow Other Choice"
+                                        }
+                                    ],
+                                    "type": "collection"
+                                },
+                                "type": "array",
+                                "label": "Fields"
+                            }
+                        ],
+                        "type": "collection",
+                        "label": "Definition"
+                    },
+                    {
+                        "name": "answers",
+                        "spec": [
+                            {
+                                "name": "field",
+                                "spec": [
+                                    {
+                                        "name": "id",
+                                        "type": "text",
+                                        "label": "ID"
+                                    },
+                                    {
+                                        "name": "type",
+                                        "type": "text",
+                                        "label": "Type"
+                                    },
+                                    {
+                                        "name": "ref",
+                                        "type": "text",
+                                        "label": "Internal Name"
+                                    }
+                                ],
+                                "type": "collection",
+                                "label": "Field"
+                            },
+                            {
+                                "name": "type",
+                                "type": "text",
+                                "label": "Type"
+                            },
+                            {
+                                "name": "text",
+                                "type": "text",
+                                "label": "Text"
+                            },
+                            {
+                                "name": "email",
+                                "type": "email",
+                                "label": "Email"
+                            },
+                            {
+                                "name": "boolean",
+                                "type": "boolean",
+                                "label": "Boolean"
+                            },
+                            {
+                                "name": "number",
+                                "type": "number",
+                                "label": "Number"
+                            },
+                            {
+                                "name": "date",
+                                "type": "date",
+                                "label": "Date"
+                            },
+                            {
+                                "name": "long_text",
+                                "type": "text",
+                                "label": "Long Text"
+                            },
+                            {
+                                "name": "short_text",
+                                "type": "text",
+                                "label": "Short Text"
+                            },
+                            {
+                                "name": "file_url",
+                                "type": "url",
+                                "label": "File URL"
+                            },
+                            {
+                                "name": "url",
+                                "type": "url",
+                                "label": "URL"
+                            },
+                            {
+                                "name": "phone_number",
+                                "type": "text",
+                                "label": "Phone Number"
+                            },
+                            {
+                                "name": "choice",
+                                "spec": [
+                                    {
+                                        "name": "label",
+                                        "type": "text",
+                                        "label": "Label"
+                                    },
+                                    {
+                                        "name": "other",
+                                        "type": "text",
+                                        "label": "Other"
+                                    }
+                                ],
+                                "type": "collection",
+                                "label": "Choice"
+                            },
+                            {
+                                "name": "choices",
+                                "spec": [
+                                    {
+                                        "name": "labels",
+                                        "spec": {
+                                            "type": "text"
+                                        },
+                                        "type": "array",
+                                        "label": "Labels"
+                                    }
+                                ],
+                                "type": "collection",
+                                "label": "Choices"
+                            }
+                        ],
+                        "type": "array",
+                        "label": "Answers"
+                    },
+                    {
+                        "name": "mappable_answers",
+                        "spec": [
+                            {
+                                "name": "2d221d0e-aa40-4bc3-9251-1743a3e596f5",
+                                "type": "boolean",
+                                "label": "Is this your first time booking with us?"
+                            },
+                            {
+                                "name": "40e28207-9b85-481d-9e70-a6b6098d2d0c",
+                                "type": "text",
+                                "label": "Please enter your registration number"
+                            },
+                            {
+                                "name": "8ff74276-a197-4c37-8dc0-2f747be4da45",
+                                "type": "text",
+                                "label": "Please enter your full name."
+                            },
+                            {
+                                "name": "86a8cc45-517d-43c5-883b-8ba48ff1f05e",
+                                "type": "date",
+                                "label": "Please enter your date of birth."
+                            },
+                            {
+                                "name": "33369c6d-9f67-4ee5-9ab9-84fe3ea31518",
+                                "type": "email",
+                                "label": "Please provide your email address."
+                            },
+                            {
+                                "name": "a2ec85b9-7c6c-43de-a57f-cbc4d4103e8f",
+                                "type": "text",
+                                "label": "Gender"
+                            },
+                            {
+                                "name": "ff39c5ca-2024-4879-a75d-47e98c07a23d",
+                                "type": "text",
+                                "label": "Describe the symptoms you are experiencing."
+                            },
+                            {
+                                "name": "4c747082-95b7-40e9-bd4d-f54cc699766d",
+                                "type": "text",
+                                "label": "Which specialist do you want to see?"
+                            },
+                            {
+                                "name": "461d0223-48c3-4dbf-b019-8afbe2c14e22",
+                                "type": "date",
+                                "label": "Select your preferred date for the appointment."
+                            },
+                            {
+                                "name": "33d37e3a-88f2-4a3e-ae3d-d15fb296ffb8",
+                                "type": "text",
+                                "label": "Select your preferred time for the appointment."
+                            },
+                            {
+                                "name": "77d4c07d-5f2d-439b-a52b-7881cb18884b",
+                                "type": "boolean",
+                                "label": "Indicate if you have experienced these symptoms in the past."
+                            },
+                            {
+                                "name": "9e8d1614-1a55-4055-8b76-2c60a183a767",
+                                "type": "text",
+                                "label": "Provide any additional information or medical history that may be relevant."
+                            },
+                            {
+                                "name": "f9c776d9-4488-4f75-9375-8b3a32d1c8ae",
+                                "type": "text",
+                                "label": "Please upload supporting documents on medical history that may be relevant."
+                            },
+                            {
+                                "name": "cb4d54e4-d0ee-43c6-9e77-f4e1d14273d8",
+                                "type": "text",
+                                "label": "Please confirm that you agree to the terms and conditions."
+                            }
+                        ],
+                        "type": "collection",
+                        "label": "Mappable Answers"
+                    },
+                    {
+                        "name": "hidden",
+                        "spec": [],
+                        "type": "collection",
+                        "label": "Hidden"
+                    }
+                ]
+            }
+        },
+        {
+            "id": 34,
+            "module": "typeform:GetResponseFile",
+            "version": 2,
+            "parameters": {
+                "__IMTCONN__": 2261411
+            },
+            "mapper": {
+                "url": "{{1.mappable_answers.`f9c776d9-4488-4f75-9375-8b3a32d1c8ae`}}",
+                "inputType": "url"
+            },
+            "metadata": {
+                "designer": {
+                    "x": 300,
+                    "y": 150
+                },
+                "restore": {
+                    "expect": {
+                        "inputType": {
+                            "mode": "chose",
+                            "label": "URL"
+                        }
+                    },
+                    "parameters": {
+                        "__IMTCONN__": {
+                            "data": {
+                                "scoped": "true",
+                                "connection": "typeform2"
+                            },
+                            "label": "Nina Typeform connection"
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "__IMTCONN__",
+                        "type": "account:typeform2",
+                        "label": "Connection",
+                        "required": true
+                    }
+                ],
+                "expect": [
+                    {
+                        "name": "inputType",
+                        "type": "select",
+                        "label": "URL/IDs",
+                        "required": true,
+                        "validate": {
+                            "enum": [
+                                "url",
+                                "ids"
+                            ]
+                        }
+                    },
+                    {
+                        "name": "url",
+                        "type": "url",
+                        "label": "URL",
+                        "required": true
+                    }
+                ]
+            }
+        },
+        {
+            "id": 45,
+            "module": "google-drive:uploadAFile",
+            "version": 4,
+            "parameters": {
+                "__IMTCONN__": 2257482
+            },
+            "mapper": {
+                "data": "{{1.mappable_answers.`f9c776d9-4488-4f75-9375-8b3a32d1c8ae`}}",
+                "select": "value",
+                "convert": false,
+                "filename": "{{1.mappable_answers.`f9c776d9-4488-4f75-9375-8b3a32d1c8ae`}}",
+                "folderId": "/1HzD2qjFjL67WCqpFTMmmws2tqIfA5prd",
+                "destination": "drive"
+            },
+            "metadata": {
+                "designer": {
+                    "x": 600,
+                    "y": 150
+                },
+                "restore": {
+                    "expect": {
+                        "select": {
+                            "label": "Select from the list"
+                        },
+                        "folderId": {
+                            "mode": "chose",
+                            "path": [
+                                "Kibo"
+                            ]
+                        },
+                        "destination": {
+                            "label": "My Drive"
+                        }
+                    },
+                    "parameters": {
+                        "__IMTCONN__": {
+                            "data": {
+                                "scoped": "true",
+                                "connection": "google-restricted"
+                            },
+                            "label": "Nina Google Restricted connection (ninaryan254@gmail.com)"
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "__IMTCONN__",
+                        "type": "account:google-restricted",
+                        "label": "Connection",
+                        "required": true
+                    }
+                ],
+                "expect": [
+                    {
+                        "name": "select",
+                        "type": "select",
+                        "label": "Enter a Folder ID",
+                        "required": true,
+                        "validate": {
+                            "enum": [
+                                "map",
+                                "value"
+                            ]
+                        }
+                    },
+                    {
+                        "name": "title",
+                        "type": "text",
+                        "label": "New File Name"
+                    },
+                    {
+                        "name": "filename",
+                        "type": "text",
+                        "label": "File Name",
+                        "required": true
+                    },
+                    {
+                        "name": "data",
+                        "type": "buffer",
+                        "label": "Data",
+                        "required": true
+                    },
+                    {
+                        "name": "convert",
+                        "type": "boolean",
+                        "label": "Convert a File",
+                        "required": true
+                    },
+                    {
+                        "name": "destination",
+                        "type": "select",
+                        "label": "New Drive Location",
+                        "required": true,
+                        "validate": {
+                            "enum": [
+                                "drive",
+                                "share",
+                                "team"
+                            ]
+                        }
+                    },
+                    {
+                        "name": "folderId",
+                        "type": "folder",
+                        "label": "New Folder Location",
+                        "required": true
+                    }
+                ]
+            }
+        },
+        {
+            "id": 43,
+            "module": "google-drive:shareAFileFolder",
+            "version": 4,
+            "parameters": {
+                "__IMTCONN__": 2257482
+            },
+            "mapper": {
+                "file": "{{45.id}}",
+                "role": "reader",
+                "type": "anyone",
+                "select": "file",
+                "destination": "drive",
+                "allowFileDiscovery": false
+            },
+            "metadata": {
+                "designer": {
+                    "x": 900,
+                    "y": 150
+                },
+                "restore": {
+                    "expect": {
+                        "file": {
+                            "mode": "edit",
+                            "path": []
+                        },
+                        "role": {
+                            "mode": "chose",
+                            "label": "Reader"
+                        },
+                        "type": {
+                            "mode": "chose",
+                            "label": "Anyone"
+                        },
+                        "select": {
+                            "label": "File"
+                        },
+                        "destination": {
+                            "label": "My Drive"
+                        },
+                        "allowFileDiscovery": {
+                            "mode": "chose"
+                        }
+                    },
+                    "parameters": {
+                        "__IMTCONN__": {
+                            "data": {
+                                "scoped": "true",
+                                "connection": "google-restricted"
+                            },
+                            "label": "Nina Google Restricted connection (ninaryan254@gmail.com)"
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "__IMTCONN__",
+                        "type": "account:google-restricted",
+                        "label": "Connection",
+                        "required": true
+                    }
+                ],
+                "expect": [
+                    {
+                        "name": "destination",
+                        "type": "select",
+                        "label": "Choose a Drive",
+                        "required": true,
+                        "validate": {
+                            "enum": [
+                                "drive",
+                                "share",
+                                "team"
+                            ]
+                        }
+                    },
+                    {
+                        "name": "select",
+                        "type": "select",
+                        "label": "Select",
+                        "required": true,
+                        "validate": {
+                            "enum": [
+                                "file",
+                                "folder"
+                            ]
+                        }
+                    },
+                    {
+                        "name": "role",
+                        "type": "select",
+                        "label": "Role",
+                        "required": true,
+                        "validate": {
+                            "enum": [
+                                "owner",
+                                "writer",
+                                "commenter",
+                                "reader"
+                            ]
+                        }
+                    },
+                    {
+                        "name": "type",
+                        "type": "select",
+                        "label": "Type",
+                        "required": true,
+                        "validate": {
+                            "enum": [
+                                "user",
+                                "group",
+                                "domain",
+                                "anyone"
+                            ]
+                        }
+                    },
+                    {
+                        "mode": "edit",
+                        "name": "file",
+                        "type": "file",
+                        "label": "File ID",
+                        "required": true
+                    },
+                    {
+                        "name": "allowFileDiscovery",
+                        "type": "boolean",
+                        "label": "Allow File Discovery",
+                        "required": true
+                    }
+                ],
+                "interface": [
+                    {
+                        "name": "fileId",
+                        "type": "text",
+                        "label": "File ID"
+                    },
+                    {
+                        "name": "kind",
+                        "type": "text",
+                        "label": "Kind"
+                    },
+                    {
+                        "name": "id",
+                        "type": "text",
+                        "label": "Permission ID"
+                    },
+                    {
+                        "name": "type",
+                        "type": "text",
+                        "label": "Type"
+                    },
+                    {
+                        "name": "shareLink",
+                        "type": "url",
+                        "label": "Share Link"
+                    },
+                    {
+                        "name": "emailAddress",
+                        "type": "text",
+                        "label": "Email Address"
+                    },
+                    {
+                        "name": "domain",
+                        "type": "text",
+                        "label": "Domain"
+                    },
+                    {
+                        "name": "role",
+                        "type": "text",
+                        "label": "Role"
+                    },
+                    {
+                        "name": "allowFileDiscovery",
+                        "type": "boolean",
+                        "label": "Allow File Discovery"
+                    },
+                    {
+                        "name": "displayName",
+                        "type": "text",
+                        "label": "Display Name"
+                    },
+                    {
+                        "name": "photoLink",
+                        "type": "text",
+                        "label": "Photo Link"
+                    },
+                    {
+                        "name": "expirationTime",
+                        "type": "date",
+                        "label": "Expiration Time"
+                    },
+                    {
+                        "name": "teamDrivePermissionDetails",
+                        "spec": {
+                            "spec": [
+                                {
+                                    "name": "teamDrivePermissionType",
+                                    "type": "text",
+                                    "label": "Team Drive Permission Type"
+                                },
+                                {
+                                    "name": "role",
+                                    "type": "text",
+                                    "label": "Role"
+                                },
+                                {
+                                    "name": "inheritedFrom",
+                                    "type": "text",
+                                    "label": "Inherited From"
+                                },
+                                {
+                                    "name": "inherited",
+                                    "type": "boolean",
+                                    "label": "Inherited"
+                                }
+                            ],
+                            "type": "collection"
+                        },
+                        "type": "array",
+                        "label": "Team Drive Permission Details"
+                    },
+                    {
+                        "name": "permissionDetails",
+                        "spec": {
+                            "spec": [
+                                {
+                                    "name": "permissionType",
+                                    "type": "text",
+                                    "label": "Permission Type"
+                                },
+                                {
+                                    "name": "role",
+                                    "type": "text",
+                                    "label": "Role"
+                                },
+                                {
+                                    "name": "inheritedFrom",
+                                    "type": "text",
+                                    "label": "Inherited From"
+                                },
+                                {
+                                    "name": "inherited",
+                                    "type": "boolean",
+                                    "label": "Inherited"
+                                }
+                            ],
+                            "type": "collection"
+                        },
+                        "type": "array",
+                        "label": "Permission Details"
+                    },
+                    {
+                        "name": "deleted",
+                        "type": "boolean",
+                        "label": "Deleted"
+                    },
+                    {
+                        "name": "pendingOwner",
+                        "type": "boolean",
+                        "label": "Pending Owner"
+                    },
+                    {
+                        "name": "webContentLink",
+                        "type": "url",
+                        "label": "Web Content Link"
+                    }
+                ]
+            }
+        },
+        {
+            "id": 17,
+            "module": "builtin:BasicRouter",
+            "version": 1,
+            "parameters": {
+                "else": 1
+            },
+            "filter": {
+                "name": "Appointment Booking",
+                "conditions": []
+            },
+            "mapper": null,
+            "metadata": {
+                "designer": {
+                    "x": 1200,
+                    "y": 150
+                }
+            },
+            "routes": [
+                {
+                    "flow": [
+                        {
+                            "id": 5,
+                            "module": "airtable:ActionCreateRecord",
+                            "version": 3,
+                            "parameters": {
+                                "__IMTCONN__": 2237503
+                            },
+                            "filter": {
+                                "name": "Register New Patient",
+                                "conditions": [
+                                    [
+                                        {
+                                            "a": "{{1.mappable_answers.`2d221d0e-aa40-4bc3-9251-1743a3e596f5`}}",
+                                            "b": "true",
+                                            "o": "text:equal"
+                                        }
+                                    ]
+                                ]
+                            },
+                            "mapper": {
+                                "base": "appADcMML8BuiWPZ8",
+                                "table": "tblLbdrlGQprdcGnk",
+                                "record": {
+                                    "fld4fZeQeF9R2lmX4": "{{1.mappable_answers.`a2ec85b9-7c6c-43de-a57f-cbc4d4103e8f`}}",
+                                    "fldCPpfqlTEY6PsMV": "{{1.mappable_answers.`86a8cc45-517d-43c5-883b-8ba48ff1f05e`}}",
+                                    "fldPFkyO9JuRHXyHl": "{{1.mappable_answers.`33369c6d-9f67-4ee5-9ab9-84fe3ea31518`}}",
+                                    "fldPyFfg6YoQq8Ezv": "{{1.mappable_answers.`8ff74276-a197-4c37-8dc0-2f747be4da45`}}"
+                                },
+                                "typecast": false,
+                                "useColumnId": false
+                            },
+                            "metadata": {
+                                "designer": {
+                                    "x": 1500,
+                                    "y": 0
+                                },
+                                "restore": {
+                                    "expect": {
+                                        "base": {
+                                            "label": "C"
+                                        },
+                                        "table": {
+                                            "label": "Patients",
+                                            "nested": [
+                                                {
+                                                    "name": "record",
+                                                    "spec": [
+                                                        {
+                                                            "name": "fldPyFfg6YoQq8Ezv",
+                                                            "type": "text",
+                                                            "label": "Full Name"
+                                                        },
+                                                        {
+                                                            "name": "fldCPpfqlTEY6PsMV",
+                                                            "time": false,
+                                                            "type": "date",
+                                                            "label": "Date Of Birth"
+                                                        },
+                                                        {
+                                                            "mode": "edit",
+                                                            "name": "fld4fZeQeF9R2lmX4",
+                                                            "type": "select",
+                                                            "label": "Gender",
+                                                            "dynamic": true,
+                                                            "options": [
+                                                                {
+                                                                    "label": "Female",
+                                                                    "value": "Female"
+                                                                },
+                                                                {
+                                                                    "label": "Male",
+                                                                    "value": "Male"
+                                                                }
+                                                            ],
+                                                            "validate": false
+                                                        },
+                                                        {
+                                                            "name": "fldPFkyO9JuRHXyHl",
+                                                            "type": "text",
+                                                            "label": "Email Address"
+                                                        },
+                                                        {
+                                                            "name": "fldtKCADiAPUVwJ0u",
+                                                            "spec": {
+                                                                "label": "Record ID"
+                                                            },
+                                                            "type": "array",
+                                                            "label": "Appointment ID"
+                                                        }
+                                                    ],
+                                                    "type": "collection",
+                                                    "label": "Record"
+                                                }
+                                            ]
+                                        },
+                                        "record": {
+                                            "nested": {
+                                                "fld4fZeQeF9R2lmX4": {
+                                                    "mode": "edit"
+                                                },
+                                                "fldtKCADiAPUVwJ0u": {
+                                                    "mode": "chose"
+                                                }
+                                            }
+                                        },
+                                        "typecast": {
+                                            "mode": "chose"
+                                        },
+                                        "useColumnId": {
+                                            "mode": "chose"
+                                        }
+                                    },
+                                    "parameters": {
+                                        "__IMTCONN__": {
+                                            "data": {
+                                                "scoped": "true",
+                                                "connection": "airtable3"
+                                            },
+                                            "label": "Nina Airtable OAuth Conn (User ID: usr2YT1WLFR9xGeuF)"
+                                        }
+                                    }
+                                },
+                                "parameters": [
+                                    {
+                                        "name": "__IMTCONN__",
+                                        "type": "account:airtable3,airtable2",
+                                        "label": "Connection",
+                                        "required": true
+                                    }
+                                ],
+                                "expect": [
+                                    {
+                                        "name": "base",
+                                        "type": "select",
+                                        "label": "Base",
+                                        "required": true
+                                    },
+                                    {
+                                        "name": "typecast",
+                                        "type": "boolean",
+                                        "label": "Smart links",
+                                        "required": true
+                                    },
+                                    {
+                                        "name": "useColumnId",
+                                        "type": "boolean",
+                                        "label": "Use Column ID",
+                                        "required": true
+                                    },
+                                    {
+                                        "name": "base",
+                                        "type": "select",
+                                        "label": "Base",
+                                        "required": true
+                                    },
+                                    {
+                                        "name": "typecast",
+                                        "type": "boolean",
+                                        "label": "Smart links",
+                                        "required": true
+                                    },
+                                    {
+                                        "name": "useColumnId",
+                                        "type": "boolean",
+                                        "label": "Use Column ID",
+                                        "required": true
+                                    },
+                                    {
+                                        "name": "table",
+                                        "type": "select",
+                                        "label": "Table",
+                                        "required": true
+                                    },
+                                    {
+                                        "name": "record",
+                                        "spec": [
+                                            {
+                                                "name": "fldPyFfg6YoQq8Ezv",
+                                                "type": "text",
+                                                "label": "Full Name"
+                                            },
+                                            {
+                                                "name": "fldCPpfqlTEY6PsMV",
+                                                "time": false,
+                                                "type": "date",
+                                                "label": "Date Of Birth"
+                                            },
+                                            {
+                                                "mode": "edit",
+                                                "name": "fld4fZeQeF9R2lmX4",
+                                                "type": "select",
+                                                "label": "Gender"
+                                            },
+                                            {
+                                                "name": "fldPFkyO9JuRHXyHl",
+                                                "type": "text",
+                                                "label": "Email Address"
+                                            },
+                                            {
+                                                "name": "fldtKCADiAPUVwJ0u",
+                                                "spec": {
+                                                    "name": "value",
+                                                    "label": "Record ID"
+                                                },
+                                                "type": "array",
+                                                "label": "Appointment ID"
+                                            }
+                                        ],
+                                        "type": "collection",
+                                        "label": "Record"
+                                    }
+                                ],
+                                "interface": [
+                                    {
+                                        "name": "id",
+                                        "type": "text",
+                                        "label": "ID"
+                                    },
+                                    {
+                                        "name": "createdTime",
+                                        "type": "date",
+                                        "label": "Created Time"
+                                    },
+                                    {
+                                        "name": "Registration Number",
+                                        "type": "text",
+                                        "label": "Registration Number"
+                                    },
+                                    {
+                                        "name": "Full Name",
+                                        "type": "text",
+                                        "label": "Full Name"
+                                    },
+                                    {
+                                        "name": "Date Of Birth",
+                                        "time": false,
+                                        "type": "date",
+                                        "label": "Date Of Birth"
+                                    },
+                                    {
+                                        "name": "Gender",
+                                        "type": "text",
+                                        "label": "Gender"
+                                    },
+                                    {
+                                        "name": "Email Address",
+                                        "type": "text",
+                                        "label": "Email Address"
+                                    },
+                                    {
+                                        "name": "Appointment ID",
+                                        "spec": {
+                                            "label": "Record ID"
+                                        },
+                                        "type": "array",
+                                        "label": "Appointment ID"
+                                    }
+                                ]
+                            }
+                        },
+                        {
+                            "id": 16,
+                            "module": "airtable:ActionCreateRecord",
+                            "version": 3,
+                            "parameters": {
+                                "__IMTCONN__": 2237503
+                            },
+                            "filter": {
+                                "name": "New Patient Booking",
+                                "conditions": [
+                                    [
+                                        {
+                                            "a": "{{1.mappable_answers.`2d221d0e-aa40-4bc3-9251-1743a3e596f5`}}",
+                                            "b": "true",
+                                            "o": "text:equal"
+                                        }
+                                    ]
+                                ]
+                            },
+                            "mapper": {
+                                "base": "appADcMML8BuiWPZ8",
+                                "table": "tbl1r7fIMDqJjvzFO",
+                                "record": {
+                                    "fldEzAjaLpDE6tPJZ": "{{1.mappable_answers.`33d37e3a-88f2-4a3e-ae3d-d15fb296ffb8`}}",
+                                    "fldGgYCUahqPdDMPn": "{{1.mappable_answers.`77d4c07d-5f2d-439b-a52b-7881cb18884b`}}",
+                                    "fldGntlHq5mwiDOPg": "{{5.`Registration Number`}}",
+                                    "fldLGYQi9mXGZUY4u": "{{1.mappable_answers.`9e8d1614-1a55-4055-8b76-2c60a183a767`}}",
+                                    "flde0uEpKQigKYjIi": "{{1.mappable_answers.`cb4d54e4-d0ee-43c6-9e77-f4e1d14273d8`}}",
+                                    "fldgAKJ3P2xojvloA": "{{1.mappable_answers.`461d0223-48c3-4dbf-b019-8afbe2c14e22`}}",
+                                    "fldoljuYJd91Q5z7H": "{{1.mappable_answers.`4c747082-95b7-40e9-bd4d-f54cc699766d`}}",
+                                    "fldvS7V1yHdanO56z": "{{1.mappable_answers.`ff39c5ca-2024-4879-a75d-47e98c07a23d`}}"
+                                },
+                                "typecast": false,
+                                "useColumnId": false
+                            },
+                            "metadata": {
+                                "designer": {
+                                    "x": 1800,
+                                    "y": 0
+                                },
+                                "restore": {
+                                    "expect": {
+                                        "base": {
+                                            "label": "C"
+                                        },
+                                        "table": {
+                                            "label": "Appointments",
+                                            "nested": [
+                                                {
+                                                    "name": "record",
+                                                    "spec": [
+                                                        {
+                                                            "name": "fldGntlHq5mwiDOPg",
+                                                            "spec": {
+                                                                "label": "Record ID"
+                                                            },
+                                                            "type": "array",
+                                                            "label": "Patient ID"
+                                                        },
+                                                        {
+                                                            "name": "fldvS7V1yHdanO56z",
+                                                            "type": "text",
+                                                            "label": "Symptoms",
+                                                            "multiline": true
+                                                        },
+                                                        {
+                                                            "mode": "edit",
+                                                            "name": "fldoljuYJd91Q5z7H",
+                                                            "type": "select",
+                                                            "label": "Specialist",
+                                                            "dynamic": true,
+                                                            "options": [
+                                                                {
+                                                                    "label": "Ophthalmologist",
+                                                                    "value": "Ophthalmologist"
+                                                                },
+                                                                {
+                                                                    "label": "Oncologist",
+                                                                    "value": "Oncologist"
+                                                                },
+                                                                {
+                                                                    "label": "Endocrinologists",
+                                                                    "value": "Endocrinologists"
+                                                                },
+                                                                {
+                                                                    "label": "Dermatologists",
+                                                                    "value": "Dermatologists"
+                                                                },
+                                                                {
+                                                                    "label": "Cardiologists ",
+                                                                    "value": "Cardiologists "
+                                                                },
+                                                                {
+                                                                    "label": "Paediatrician",
+                                                                    "value": "Paediatrician"
+                                                                }
+                                                            ],
+                                                            "validate": false
+                                                        },
+                                                        {
+                                                            "name": "fldgAKJ3P2xojvloA",
+                                                            "time": false,
+                                                            "type": "date",
+                                                            "label": "Appointment Date"
+                                                        },
+                                                        {
+                                                            "mode": "edit",
+                                                            "name": "fldEzAjaLpDE6tPJZ",
+                                                            "type": "select",
+                                                            "label": "Appointment Time",
+                                                            "dynamic": true,
+                                                            "options": [
+                                                                {
+                                                                    "label": "Morning (8 AM - 12 PM)",
+                                                                    "value": "Morning (8 AM - 12 PM)"
+                                                                },
+                                                                {
+                                                                    "label": "Afternoon (12 PM - 4 PM)",
+                                                                    "value": "Afternoon (12 PM - 4 PM)"
+                                                                },
+                                                                {
+                                                                    "label": "Evening (4 PM - 8 PM)",
+                                                                    "value": "Evening (4 PM - 8 PM)"
+                                                                }
+                                                            ],
+                                                            "validate": false
+                                                        },
+                                                        {
+                                                            "name": "fldGgYCUahqPdDMPn",
+                                                            "type": "boolean",
+                                                            "label": "Recurring Symptom"
+                                                        },
+                                                        {
+                                                            "name": "fldLGYQi9mXGZUY4u",
+                                                            "type": "text",
+                                                            "label": "Medical History",
+                                                            "multiline": true
+                                                        },
+                                                        {
+                                                            "name": "fldyKLPLfal757Cyx",
+                                                            "spec": [
+                                                                {
+                                                                    "help": "Airtable will download the file at the given url and keep its own copy of it.",
+                                                                    "name": "url",
+                                                                    "type": "text",
+                                                                    "label": "File URL"
+                                                                },
+                                                                {
+                                                                    "help": "If empty, Airtable will generate the name automatically.",
+                                                                    "name": "filename",
+                                                                    "type": "filename",
+                                                                    "label": "File name"
+                                                                }
+                                                            ],
+                                                            "type": "array",
+                                                            "label": "Medical Document",
+                                                            "editable": true
+                                                        },
+                                                        {
+                                                            "mode": "edit",
+                                                            "name": "flde0uEpKQigKYjIi",
+                                                            "type": "select",
+                                                            "label": "Terms & Conditions",
+                                                            "dynamic": true,
+                                                            "options": [
+                                                                {
+                                                                    "label": "Yes, I agree to the terms and conditions",
+                                                                    "value": "Yes, I agree to the terms and conditions"
+                                                                }
+                                                            ],
+                                                            "validate": false
+                                                        },
+                                                        {
+                                                            "name": "fldS8rBj6kuwQmKXL",
+                                                            "spec": {
+                                                                "label": "Record ID"
+                                                            },
+                                                            "type": "array",
+                                                            "label": "Doctors"
+                                                        },
+                                                        {
+                                                            "mode": "edit",
+                                                            "name": "fldG8ZQxgsJZH5Wau",
+                                                            "type": "select",
+                                                            "label": "Check In Status",
+                                                            "dynamic": true,
+                                                            "options": [
+                                                                {
+                                                                    "label": "Checked In",
+                                                                    "value": "Checked In"
+                                                                },
+                                                                {
+                                                                    "label": "Missed",
+                                                                    "value": "Missed"
+                                                                }
+                                                            ],
+                                                            "validate": false
+                                                        },
+                                                        {
+                                                            "name": "fldQVd6Q6CH67reli",
+                                                            "type": "text",
+                                                            "label": "Lab Tests",
+                                                            "multiline": true
+                                                        },
+                                                        {
+                                                            "name": "fldYDThd2nx2m6c2j",
+                                                            "spec": [
+                                                                {
+                                                                    "help": "Airtable will download the file at the given url and keep its own copy of it.",
+                                                                    "name": "url",
+                                                                    "type": "text",
+                                                                    "label": "File URL"
+                                                                },
+                                                                {
+                                                                    "help": "If empty, Airtable will generate the name automatically.",
+                                                                    "name": "filename",
+                                                                    "type": "filename",
+                                                                    "label": "File name"
+                                                                }
+                                                            ],
+                                                            "type": "array",
+                                                            "label": "Lab Results",
+                                                            "editable": true
+                                                        },
+                                                        {
+                                                            "name": "fldb2GCXBDlBq7UpY",
+                                                            "type": "text",
+                                                            "label": "Prescriptions",
+                                                            "multiline": true
+                                                        },
+                                                        {
+                                                            "mode": "edit",
+                                                            "name": "fld3YF0h0d1OC8jNa",
+                                                            "type": "select",
+                                                            "label": "Drug In Store",
+                                                            "dynamic": true,
+                                                            "options": [
+                                                                {
+                                                                    "label": "Yes",
+                                                                    "value": "Yes"
+                                                                },
+                                                                {
+                                                                    "label": "No",
+                                                                    "value": "No"
+                                                                }
+                                                            ],
+                                                            "validate": false
+                                                        },
+                                                        {
+                                                            "name": "fldvpcrDpumwyYAkT",
+                                                            "type": "text",
+                                                            "label": "Feedback",
+                                                            "multiline": true
+                                                        }
+                                                    ],
+                                                    "type": "collection",
+                                                    "label": "Record"
+                                                }
+                                            ]
+                                        },
+                                        "record": {
+                                            "nested": {
+                                                "fld3YF0h0d1OC8jNa": {
+                                                    "mode": "edit"
+                                                },
+                                                "fldEzAjaLpDE6tPJZ": {
+                                                    "mode": "edit"
+                                                },
+                                                "fldG8ZQxgsJZH5Wau": {
+                                                    "mode": "edit"
+                                                },
+                                                "fldGgYCUahqPdDMPn": {
+                                                    "mode": "edit"
+                                                },
+                                                "fldGntlHq5mwiDOPg": {
+                                                    "mode": "edit"
+                                                },
+                                                "fldS8rBj6kuwQmKXL": {
+                                                    "mode": "chose"
+                                                },
+                                                "fldYDThd2nx2m6c2j": {
+                                                    "mode": "edit"
+                                                },
+                                                "flde0uEpKQigKYjIi": {
+                                                    "mode": "edit"
+                                                },
+                                                "fldoljuYJd91Q5z7H": {
+                                                    "mode": "edit"
+                                                },
+                                                "fldyKLPLfal757Cyx": {
+                                                    "mode": "chose"
+                                                }
+                                            }
+                                        },
+                                        "typecast": {
+                                            "mode": "chose"
+                                        },
+                                        "useColumnId": {
+                                            "mode": "chose"
+                                        }
+                                    },
+                                    "parameters": {
+                                        "__IMTCONN__": {
+                                            "data": {
+                                                "scoped": "true",
+                                                "connection": "airtable3"
+                                            },
+                                            "label": "Nina Airtable OAuth Conn (User ID: usr2YT1WLFR9xGeuF)"
+                                        }
+                                    }
+                                },
+                                "parameters": [
+                                    {
+                                        "name": "__IMTCONN__",
+                                        "type": "account:airtable3,airtable2",
+                                        "label": "Connection",
+                                        "required": true
+                                    }
+                                ],
+                                "expect": [
+                                    {
+                                        "name": "base",
+                                        "type": "select",
+                                        "label": "Base",
+                                        "required": true
+                                    },
+                                    {
+                                        "name": "typecast",
+                                        "type": "boolean",
+                                        "label": "Smart links",
+                                        "required": true
+                                    },
+                                    {
+                                        "name": "useColumnId",
+                                        "type": "boolean",
+                                        "label": "Use Column ID",
+                                        "required": true
+                                    },
+                                    {
+                                        "name": "table",
+                                        "type": "select",
+                                        "label": "Table",
+                                        "required": true
+                                    },
+                                    {
+                                        "name": "record",
+                                        "spec": [
+                                            {
+                                                "name": "fldGntlHq5mwiDOPg",
+                                                "spec": {
+                                                    "name": "value",
+                                                    "label": "Record ID"
+                                                },
+                                                "type": "array",
+                                                "label": "Patient ID"
+                                            },
+                                            {
+                                                "name": "fldvS7V1yHdanO56z",
+                                                "type": "text",
+                                                "label": "Symptoms"
+                                            },
+                                            {
+                                                "mode": "edit",
+                                                "name": "fldoljuYJd91Q5z7H",
+                                                "type": "select",
+                                                "label": "Specialist"
+                                            },
+                                            {
+                                                "name": "fldgAKJ3P2xojvloA",
+                                                "time": false,
+                                                "type": "date",
+                                                "label": "Appointment Date"
+                                            },
+                                            {
+                                                "mode": "edit",
+                                                "name": "fldEzAjaLpDE6tPJZ",
+                                                "type": "select",
+                                                "label": "Appointment Time"
+                                            },
+                                            {
+                                                "name": "fldGgYCUahqPdDMPn",
+                                                "type": "boolean",
+                                                "label": "Recurring Symptom"
+                                            },
+                                            {
+                                                "name": "fldLGYQi9mXGZUY4u",
+                                                "type": "text",
+                                                "label": "Medical History"
+                                            },
+                                            {
+                                                "name": "fldyKLPLfal757Cyx",
+                                                "spec": [
+                                                    {
+                                                        "name": "url",
+                                                        "type": "text",
+                                                        "label": "File URL"
+                                                    },
+                                                    {
+                                                        "name": "filename",
+                                                        "type": "filename",
+                                                        "label": "File name"
+                                                    }
+                                                ],
+                                                "type": "array",
+                                                "label": "Medical Document"
+                                            },
+                                            {
+                                                "mode": "edit",
+                                                "name": "flde0uEpKQigKYjIi",
+                                                "type": "select",
+                                                "label": "Terms & Conditions"
+                                            },
+                                            {
+                                                "name": "fldS8rBj6kuwQmKXL",
+                                                "spec": {
+                                                    "name": "value",
+                                                    "label": "Record ID"
+                                                },
+                                                "type": "array",
+                                                "label": "Doctors"
+                                            },
+                                            {
+                                                "mode": "edit",
+                                                "name": "fldG8ZQxgsJZH5Wau",
+                                                "type": "select",
+                                                "label": "Check In Status"
+                                            },
+                                            {
+                                                "name": "fldQVd6Q6CH67reli",
+                                                "type": "text",
+                                                "label": "Lab Tests"
+                                            },
+                                            {
+                                                "name": "fldYDThd2nx2m6c2j",
+                                                "spec": [
+                                                    {
+                                                        "name": "url",
+                                                        "type": "text",
+                                                        "label": "File URL"
+                                                    },
+                                                    {
+                                                        "name": "filename",
+                                                        "type": "filename",
+                                                        "label": "File name"
+                                                    }
+                                                ],
+                                                "type": "array",
+                                                "label": "Lab Results"
+                                            },
+                                            {
+                                                "name": "fldb2GCXBDlBq7UpY",
+                                                "type": "text",
+                                                "label": "Prescriptions"
+                                            },
+                                            {
+                                                "mode": "edit",
+                                                "name": "fld3YF0h0d1OC8jNa",
+                                                "type": "select",
+                                                "label": "Drug In Store"
+                                            },
+                                            {
+                                                "name": "fldvpcrDpumwyYAkT",
+                                                "type": "text",
+                                                "label": "Feedback"
+                                            }
+                                        ],
+                                        "type": "collection",
+                                        "label": "Record"
+                                    }
+                                ],
+                                "interface": [
+                                    {
+                                        "name": "id",
+                                        "type": "text",
+                                        "label": "ID"
+                                    },
+                                    {
+                                        "name": "createdTime",
+                                        "type": "date",
+                                        "label": "Created Time"
+                                    },
+                                    {
+                                        "name": "Appointment ID",
+                                        "type": "text",
+                                        "label": "Appointment ID"
+                                    },
+                                    {
+                                        "name": "Patient ID",
+                                        "spec": {
+                                            "label": "Record ID"
+                                        },
+                                        "type": "array",
+                                        "label": "Patient ID"
+                                    },
+                                    {
+                                        "name": "Patient Name",
+                                        "type": "array",
+                                        "label": "Patient Name"
+                                    },
+                                    {
+                                        "name": "Patient Email",
+                                        "type": "array",
+                                        "label": "Patient Email"
+                                    },
+                                    {
+                                        "name": "Symptoms",
+                                        "type": "text",
+                                        "label": "Symptoms",
+                                        "multiline": true
+                                    },
+                                    {
+                                        "name": "Specialist",
+                                        "type": "text",
+                                        "label": "Specialist"
+                                    },
+                                    {
+                                        "name": "Appointment Date",
+                                        "time": false,
+                                        "type": "date",
+                                        "label": "Appointment Date"
+                                    },
+                                    {
+                                        "name": "Appointment Time",
+                                        "type": "text",
+                                        "label": "Appointment Time"
+                                    },
+                                    {
+                                        "name": "Recurring Symptom",
+                                        "type": "boolean",
+                                        "label": "Recurring Symptom"
+                                    },
+                                    {
+                                        "name": "Medical History",
+                                        "type": "text",
+                                        "label": "Medical History",
+                                        "multiline": true
+                                    },
+                                    {
+                                        "name": "Medical Document",
+                                        "type": "text",
+                                        "label": "Medical Document"
+                                    },
+                                    {
+                                        "name": "Terms & Conditions",
+                                        "type": "text",
+                                        "label": "Terms & Conditions"
+                                    },
+                                    {
+                                        "name": "Doctor",
+                                        "spec": {
+                                            "label": "Record ID"
+                                        },
+                                        "type": "array",
+                                        "label": "Doctor"
+                                    },
+                                    {
+                                        "name": "Doctor Name",
+                                        "type": "array",
+                                        "label": "Doctor Name"
+                                    },
+                                    {
+                                        "name": "Reminder Sent 24h",
+                                        "type": "boolean",
+                                        "label": "Reminder Sent 24h"
+                                    },
+                                    {
+                                        "name": "Check In Status",
+                                        "type": "text",
+                                        "label": "Check In Status"
+                                    },
+                                    {
+                                        "name": "Lab Tests",
+                                        "type": "text",
+                                        "label": "Lab Tests",
+                                        "multiline": true
+                                    },
+                                    {
+                                        "name": "Lab Processed",
+                                        "type": "boolean",
+                                        "label": "Lab Processed"
+                                    },
+                                    {
+                                        "name": "Lab Record",
+                                        "spec": {
+                                            "label": "Record ID"
+                                        },
+                                        "type": "array",
+                                        "label": "Lab Record"
+                                    },
+                                    {
+                                        "name": "Lab Results",
+                                        "type": "array",
+                                        "label": "Lab Results"
+                                    },
+                                    {
+                                        "name": "Diagnosis",
+                                        "type": "text",
+                                        "label": "Diagnosis",
+                                        "multiline": true
+                                    },
+                                    {
+                                        "name": "Prescription",
+                                        "type": "text",
+                                        "label": "Prescription",
+                                        "multiline": true
+                                    },
+                                    {
+                                        "name": "Prescription Status",
+                                        "type": "text",
+                                        "label": "Prescription Status"
+                                    },
+                                    {
+                                        "name": "Drug In Store",
+                                        "type": "text",
+                                        "label": "Drug In Store",
+                                        "multiline": true
+                                    },
+                                    {
+                                        "name": "Drug Not In Store",
+                                        "type": "text",
+                                        "label": "Drug Not In Store",
+                                        "multiline": true
+                                    },
+                                    {
+                                        "name": "Feedback",
+                                        "type": "text",
+                                        "label": "Feedback",
+                                        "multiline": true
+                                    }
+                                ]
+                            }
+                        },
+                        {
+                            "id": 25,
+                            "module": "google-email:ActionSendEmail",
+                            "version": 2,
+                            "parameters": {
+                                "account": 2257482
+                            },
+                            "mapper": {
+                                "cc": [],
+                                "to": [
+                                    "{{5.`Email Address`}}"
+                                ],
+                                "bcc": [],
+                                "from": "",
+                                "html": "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n    <title>Appointment Confirmation</title>\n</head>\n<body>\n    <p>Dear {{5.`Full Name`}},</p>\n\n    <p>Thank you for booking another appointment with MediCare. We are pleased to confirm your appointment details as follows:</p>\n\n    <h3>Appointment Details:</h3>\n    <ul>\n        <li>Date: {{16.`Appointment Date`}}</li>\n        <li>Time: {{16.`Appointment Time`}}</li>\n        <li>Specialist To See: {{16.Specialist}}</li>\n    </ul>\n\n    <p>Since this is your first time with us, please bring the following documents to your appointment:</p>\n    <ol>\n        <li>A valid ID</li>\n        <li>Any previous medical records</li>\n    </ol>\n\n    <p>If you have any questions or need to reschedule, please contact us at <a href=\"tel:+25471234567\">+25471234567</a> or <a href=\"mailto:medicare@mail.com\">medicare@mail.com</a>. We look forward to seeing you.</p>\n\n    <p>Best regards,</p>\n    <p>MediCare</p>\n</body>\n</html>\n",
+                                "subject": "Your Appointment Confirmation with MediCare",
+                                "attachments": []
+                            },
+                            "metadata": {
+                                "designer": {
+                                    "x": 2100,
+                                    "y": 0
+                                },
+                                "restore": {
+                                    "expect": {
+                                        "cc": {
+                                            "mode": "chose"
+                                        },
+                                        "to": {
+                                            "mode": "chose",
+                                            "items": [
+                                                null
+                                            ]
+                                        },
+                                        "bcc": {
+                                            "mode": "chose"
+                                        },
+                                        "attachments": {
+                                            "mode": "chose"
+                                        }
+                                    },
+                                    "parameters": {
+                                        "account": {
+                                            "data": {
+                                                "scoped": "true",
+                                                "connection": "google-restricted"
+                                            },
+                                            "label": "Nina Google Restricted connection (ninaryan254@gmail.com)"
+                                        }
+                                    }
+                                },
+                                "parameters": [
+                                    {
+                                        "name": "account",
+                                        "type": "account:google-restricted",
+                                        "label": "Connection",
+                                        "required": true
+                                    }
+                                ],
+                                "expect": [
+                                    {
+                                        "name": "from",
+                                        "type": "text",
+                                        "label": "From"
+                                    },
+                                    {
+                                        "name": "to",
+                                        "spec": {
+                                            "name": "value",
+                                            "type": "email",
+                                            "label": "Email address",
+                                            "required": true
+                                        },
+                                        "type": "array",
+                                        "label": "To",
+                                        "required": true
+                                    },
+                                    {
+                                        "name": "subject",
+                                        "type": "text",
+                                        "label": "Subject"
+                                    },
+                                    {
+                                        "name": "html",
+                                        "type": "text",
+                                        "label": "Content"
+                                    },
+                                    {
+                                        "name": "attachments",
+                                        "spec": [
+                                            {
+                                                "name": "fileName",
+                                                "type": "filename",
+                                                "label": "File name",
+                                                "required": true,
+                                                "semantic": "file:name"
+                                            },
+                                            {
+                                                "name": "data",
+                                                "type": "buffer",
+                                                "label": "Data",
+                                                "required": true,
+                                                "semantic": "file:data"
+                                            },
+                                            {
+                                                "name": "cid",
+                                                "type": "text",
+                                                "label": "Content-ID"
+                                            }
+                                        ],
+                                        "type": "array",
+                                        "label": "Attachments"
+                                    },
+                                    {
+                                        "name": "cc",
+                                        "spec": {
+                                            "name": "value",
+                                            "type": "email",
+                                            "label": "Email address"
+                                        },
+                                        "type": "array",
+                                        "label": "Copy recipient"
+                                    },
+                                    {
+                                        "name": "bcc",
+                                        "spec": {
+                                            "name": "value",
+                                            "type": "email",
+                                            "label": "Email address"
+                                        },
+                                        "type": "array",
+                                        "label": "Blind copy recipient"
+                                    }
+                                ]
+                            }
+                        }
+                    ]
+                },
+                {
+                    "flow": [
+                        {
+                            "id": 3,
+                            "module": "airtable:ActionCreateRecord",
+                            "version": 3,
+                            "parameters": {
+                                "__IMTCONN__": 2237503
+                            },
+                            "filter": {
+                                "name": "Subsequent Patient Booking",
+                                "conditions": [
+                                    [
+                                        {
+                                            "a": "{{1.mappable_answers.`2d221d0e-aa40-4bc3-9251-1743a3e596f5`}}",
+                                            "b": "false",
+                                            "o": "text:equal"
+                                        }
+                                    ]
+                                ]
+                            },
+                            "mapper": {
+                                "base": "appADcMML8BuiWPZ8",
+                                "table": "tbl1r7fIMDqJjvzFO",
+                                "record": {
+                                    "fldEzAjaLpDE6tPJZ": "{{1.mappable_answers.`33d37e3a-88f2-4a3e-ae3d-d15fb296ffb8`}}",
+                                    "fldGgYCUahqPdDMPn": "{{1.mappable_answers.`77d4c07d-5f2d-439b-a52b-7881cb18884b`}}",
+                                    "fldGntlHq5mwiDOPg": "{{1.mappable_answers.`40e28207-9b85-481d-9e70-a6b6098d2d0c`}}",
+                                    "fldLGYQi9mXGZUY4u": "{{1.mappable_answers.`9e8d1614-1a55-4055-8b76-2c60a183a767`}}",
+                                    "flde0uEpKQigKYjIi": "{{1.mappable_answers.`cb4d54e4-d0ee-43c6-9e77-f4e1d14273d8`}}",
+                                    "fldgAKJ3P2xojvloA": "{{1.mappable_answers.`461d0223-48c3-4dbf-b019-8afbe2c14e22`}}",
+                                    "fldoljuYJd91Q5z7H": "{{1.mappable_answers.`4c747082-95b7-40e9-bd4d-f54cc699766d`}}",
+                                    "fldvS7V1yHdanO56z": "{{1.mappable_answers.`ff39c5ca-2024-4879-a75d-47e98c07a23d`}}"
+                                },
+                                "typecast": false,
+                                "useColumnId": false
+                            },
+                            "metadata": {
+                                "designer": {
+                                    "x": 1500,
+                                    "y": 300
+                                },
+                                "restore": {
+                                    "expect": {
+                                        "base": {
+                                            "label": "C"
+                                        },
+                                        "table": {
+                                            "label": "Appointments",
+                                            "nested": [
+                                                {
+                                                    "name": "record",
+                                                    "spec": [
+                                                        {
+                                                            "name": "fldGntlHq5mwiDOPg",
+                                                            "spec": {
+                                                                "label": "Record ID"
+                                                            },
+                                                            "type": "array",
+                                                            "label": "Patient ID"
+                                                        },
+                                                        {
+                                                            "name": "fldvS7V1yHdanO56z",
+                                                            "type": "text",
+                                                            "label": "Symptoms",
+                                                            "multiline": true
+                                                        },
+                                                        {
+                                                            "mode": "edit",
+                                                            "name": "fldoljuYJd91Q5z7H",
+                                                            "type": "select",
+                                                            "label": "Specialist",
+                                                            "dynamic": true,
+                                                            "options": [
+                                                                {
+                                                                    "label": "Ophthalmologist",
+                                                                    "value": "Ophthalmologist"
+                                                                },
+                                                                {
+                                                                    "label": "Oncologist",
+                                                                    "value": "Oncologist"
+                                                                },
+                                                                {
+                                                                    "label": "Endocrinologists",
+                                                                    "value": "Endocrinologists"
+                                                                },
+                                                                {
+                                                                    "label": "Dermatologists",
+                                                                    "value": "Dermatologists"
+                                                                },
+                                                                {
+                                                                    "label": "Cardiologists ",
+                                                                    "value": "Cardiologists "
+                                                                },
+                                                                {
+                                                                    "label": "Paediatrician",
+                                                                    "value": "Paediatrician"
+                                                                }
+                                                            ],
+                                                            "validate": false
+                                                        },
+                                                        {
+                                                            "name": "fldgAKJ3P2xojvloA",
+                                                            "time": false,
+                                                            "type": "date",
+                                                            "label": "Appointment Date"
+                                                        },
+                                                        {
+                                                            "mode": "edit",
+                                                            "name": "fldEzAjaLpDE6tPJZ",
+                                                            "type": "select",
+                                                            "label": "Appointment Time",
+                                                            "dynamic": true,
+                                                            "options": [
+                                                                {
+                                                                    "label": "Morning (8 AM - 12 PM)",
+                                                                    "value": "Morning (8 AM - 12 PM)"
+                                                                },
+                                                                {
+                                                                    "label": "Afternoon (12 PM - 4 PM)",
+                                                                    "value": "Afternoon (12 PM - 4 PM)"
+                                                                },
+                                                                {
+                                                                    "label": "Evening (4 PM - 8 PM)",
+                                                                    "value": "Evening (4 PM - 8 PM)"
+                                                                }
+                                                            ],
+                                                            "validate": false
+                                                        },
+                                                        {
+                                                            "name": "fldGgYCUahqPdDMPn",
+                                                            "type": "boolean",
+                                                            "label": "Recurring Symptom"
+                                                        },
+                                                        {
+                                                            "name": "fldLGYQi9mXGZUY4u",
+                                                            "type": "text",
+                                                            "label": "Medical History",
+                                                            "multiline": true
+                                                        },
+                                                        {
+                                                            "name": "fldyKLPLfal757Cyx",
+                                                            "type": "text",
+                                                            "label": "Medical Document"
+                                                        },
+                                                        {
+                                                            "mode": "edit",
+                                                            "name": "flde0uEpKQigKYjIi",
+                                                            "type": "select",
+                                                            "label": "Terms & Conditions",
+                                                            "dynamic": true,
+                                                            "options": [
+                                                                {
+                                                                    "label": "Yes, I agree to the terms and conditions",
+                                                                    "value": "Yes, I agree to the terms and conditions"
+                                                                }
+                                                            ],
+                                                            "validate": false
+                                                        },
+                                                        {
+                                                            "name": "fldS8rBj6kuwQmKXL",
+                                                            "spec": {
+                                                                "label": "Record ID"
+                                                            },
+                                                            "type": "array",
+                                                            "label": "Doctor"
+                                                        },
+                                                        {
+                                                            "name": "fldyzDv0Y6oO5Scmg",
+                                                            "type": "boolean",
+                                                            "label": "Reminder Sent 24h"
+                                                        },
+                                                        {
+                                                            "mode": "edit",
+                                                            "name": "fldG8ZQxgsJZH5Wau",
+                                                            "type": "select",
+                                                            "label": "Check In Status",
+                                                            "dynamic": true,
+                                                            "options": [
+                                                                {
+                                                                    "label": "Checked In",
+                                                                    "value": "Checked In"
+                                                                },
+                                                                {
+                                                                    "label": "Missed",
+                                                                    "value": "Missed"
+                                                                }
+                                                            ],
+                                                            "validate": false
+                                                        },
+                                                        {
+                                                            "name": "fldQVd6Q6CH67reli",
+                                                            "type": "text",
+                                                            "label": "Lab Tests",
+                                                            "multiline": true
+                                                        },
+                                                        {
+                                                            "name": "fldeXqhpQVTjfkvgE",
+                                                            "type": "boolean",
+                                                            "label": "Lab Processed"
+                                                        },
+                                                        {
+                                                            "name": "fldW02ASPNCVBVVJG",
+                                                            "spec": {
+                                                                "label": "Record ID"
+                                                            },
+                                                            "type": "array",
+                                                            "label": "Lab Record"
+                                                        },
+                                                        {
+                                                            "name": "fldoeclBh5rpwjT1E",
+                                                            "type": "text",
+                                                            "label": "Diagnosis",
+                                                            "multiline": true
+                                                        },
+                                                        {
+                                                            "name": "fldb2GCXBDlBq7UpY",
+                                                            "type": "text",
+                                                            "label": "Prescription",
+                                                            "multiline": true
+                                                        },
+                                                        {
+                                                            "mode": "edit",
+                                                            "name": "fldSizVnZqZCCZoJ6",
+                                                            "type": "select",
+                                                            "label": "Prescription Status",
+                                                            "dynamic": true,
+                                                            "options": [
+                                                                {
+                                                                    "label": "Partially Available",
+                                                                    "value": "Partially Available"
+                                                                },
+                                                                {
+                                                                    "label": "Not Available",
+                                                                    "value": "Not Available"
+                                                                }
+                                                            ],
+                                                            "validate": false
+                                                        },
+                                                        {
+                                                            "name": "fld3YF0h0d1OC8jNa",
+                                                            "type": "text",
+                                                            "label": "Drug In Store",
+                                                            "multiline": true
+                                                        },
+                                                        {
+                                                            "name": "fldWPwiAoIyblti7t",
+                                                            "type": "text",
+                                                            "label": "Drug Not In Store",
+                                                            "multiline": true
+                                                        },
+                                                        {
+                                                            "name": "fldvpcrDpumwyYAkT",
+                                                            "type": "text",
+                                                            "label": "Feedback",
+                                                            "multiline": true
+                                                        }
+                                                    ],
+                                                    "type": "collection",
+                                                    "label": "Record"
+                                                }
+                                            ]
+                                        },
+                                        "record": {
+                                            "nested": {
+                                                "fldEzAjaLpDE6tPJZ": {
+                                                    "mode": "edit"
+                                                },
+                                                "fldG8ZQxgsJZH5Wau": {
+                                                    "mode": "edit"
+                                                },
+                                                "fldGgYCUahqPdDMPn": {
+                                                    "mode": "edit"
+                                                },
+                                                "fldGntlHq5mwiDOPg": {
+                                                    "mode": "edit"
+                                                },
+                                                "fldS8rBj6kuwQmKXL": {
+                                                    "mode": "chose"
+                                                },
+                                                "fldSizVnZqZCCZoJ6": {
+                                                    "mode": "edit"
+                                                },
+                                                "fldW02ASPNCVBVVJG": {
+                                                    "mode": "chose"
+                                                },
+                                                "flde0uEpKQigKYjIi": {
+                                                    "mode": "edit"
+                                                },
+                                                "fldeXqhpQVTjfkvgE": {
+                                                    "mode": "chose"
+                                                },
+                                                "fldoljuYJd91Q5z7H": {
+                                                    "mode": "edit"
+                                                },
+                                                "fldyzDv0Y6oO5Scmg": {
+                                                    "mode": "chose"
+                                                }
+                                            }
+                                        },
+                                        "typecast": {
+                                            "mode": "chose"
+                                        },
+                                        "useColumnId": {
+                                            "mode": "chose"
+                                        }
+                                    },
+                                    "parameters": {
+                                        "__IMTCONN__": {
+                                            "data": {
+                                                "scoped": "true",
+                                                "connection": "airtable3"
+                                            },
+                                            "label": "Nina Airtable OAuth Conn (User ID: usr2YT1WLFR9xGeuF)"
+                                        }
+                                    }
+                                },
+                                "parameters": [
+                                    {
+                                        "name": "__IMTCONN__",
+                                        "type": "account:airtable3,airtable2",
+                                        "label": "Connection",
+                                        "required": true
+                                    }
+                                ],
+                                "expect": [
+                                    {
+                                        "name": "base",
+                                        "type": "select",
+                                        "label": "Base",
+                                        "required": true
+                                    },
+                                    {
+                                        "name": "typecast",
+                                        "type": "boolean",
+                                        "label": "Smart links",
+                                        "required": true
+                                    },
+                                    {
+                                        "name": "useColumnId",
+                                        "type": "boolean",
+                                        "label": "Use Column ID",
+                                        "required": true
+                                    },
+                                    {
+                                        "name": "table",
+                                        "type": "select",
+                                        "label": "Table",
+                                        "required": true
+                                    },
+                                    {
+                                        "name": "record",
+                                        "spec": [
+                                            {
+                                                "name": "fldGntlHq5mwiDOPg",
+                                                "spec": {
+                                                    "name": "value",
+                                                    "label": "Record ID"
+                                                },
+                                                "type": "array",
+                                                "label": "Patient ID"
+                                            },
+                                            {
+                                                "name": "fldvS7V1yHdanO56z",
+                                                "type": "text",
+                                                "label": "Symptoms"
+                                            },
+                                            {
+                                                "mode": "edit",
+                                                "name": "fldoljuYJd91Q5z7H",
+                                                "type": "select",
+                                                "label": "Specialist"
+                                            },
+                                            {
+                                                "name": "fldgAKJ3P2xojvloA",
+                                                "time": false,
+                                                "type": "date",
+                                                "label": "Appointment Date"
+                                            },
+                                            {
+                                                "mode": "edit",
+                                                "name": "fldEzAjaLpDE6tPJZ",
+                                                "type": "select",
+                                                "label": "Appointment Time"
+                                            },
+                                            {
+                                                "name": "fldGgYCUahqPdDMPn",
+                                                "type": "boolean",
+                                                "label": "Recurring Symptom"
+                                            },
+                                            {
+                                                "name": "fldLGYQi9mXGZUY4u",
+                                                "type": "text",
+                                                "label": "Medical History"
+                                            },
+                                            {
+                                                "name": "fldyKLPLfal757Cyx",
+                                                "type": "text",
+                                                "label": "Medical Document"
+                                            },
+                                            {
+                                                "mode": "edit",
+                                                "name": "flde0uEpKQigKYjIi",
+                                                "type": "select",
+                                                "label": "Terms & Conditions"
+                                            },
+                                            {
+                                                "name": "fldS8rBj6kuwQmKXL",
+                                                "spec": {
+                                                    "name": "value",
+                                                    "label": "Record ID"
+                                                },
+                                                "type": "array",
+                                                "label": "Doctor"
+                                            },
+                                            {
+                                                "name": "fldyzDv0Y6oO5Scmg",
+                                                "type": "boolean",
+                                                "label": "Reminder Sent 24h"
+                                            },
+                                            {
+                                                "mode": "edit",
+                                                "name": "fldG8ZQxgsJZH5Wau",
+                                                "type": "select",
+                                                "label": "Check In Status"
+                                            },
+                                            {
+                                                "name": "fldQVd6Q6CH67reli",
+                                                "type": "text",
+                                                "label": "Lab Tests"
+                                            },
+                                            {
+                                                "name": "fldeXqhpQVTjfkvgE",
+                                                "type": "boolean",
+                                                "label": "Lab Processed"
+                                            },
+                                            {
+                                                "name": "fldW02ASPNCVBVVJG",
+                                                "spec": {
+                                                    "name": "value",
+                                                    "label": "Record ID"
+                                                },
+                                                "type": "array",
+                                                "label": "Lab Record"
+                                            },
+                                            {
+                                                "name": "fldoeclBh5rpwjT1E",
+                                                "type": "text",
+                                                "label": "Diagnosis"
+                                            },
+                                            {
+                                                "name": "fldb2GCXBDlBq7UpY",
+                                                "type": "text",
+                                                "label": "Prescription"
+                                            },
+                                            {
+                                                "mode": "edit",
+                                                "name": "fldSizVnZqZCCZoJ6",
+                                                "type": "select",
+                                                "label": "Prescription Status"
+                                            },
+                                            {
+                                                "name": "fld3YF0h0d1OC8jNa",
+                                                "type": "text",
+                                                "label": "Drug In Store"
+                                            },
+                                            {
+                                                "name": "fldWPwiAoIyblti7t",
+                                                "type": "text",
+                                                "label": "Drug Not In Store"
+                                            },
+                                            {
+                                                "name": "fldvpcrDpumwyYAkT",
+                                                "type": "text",
+                                                "label": "Feedback"
+                                            }
+                                        ],
+                                        "type": "collection",
+                                        "label": "Record"
+                                    }
+                                ],
+                                "interface": [
+                                    {
+                                        "name": "id",
+                                        "type": "text",
+                                        "label": "ID"
+                                    },
+                                    {
+                                        "name": "createdTime",
+                                        "type": "date",
+                                        "label": "Created Time"
+                                    },
+                                    {
+                                        "name": "Appointment ID",
+                                        "type": "text",
+                                        "label": "Appointment ID"
+                                    },
+                                    {
+                                        "name": "Patient ID",
+                                        "spec": {
+                                            "label": "Record ID"
+                                        },
+                                        "type": "array",
+                                        "label": "Patient ID"
+                                    },
+                                    {
+                                        "name": "Patient Name",
+                                        "type": "array",
+                                        "label": "Patient Name"
+                                    },
+                                    {
+                                        "name": "Patient Email",
+                                        "type": "array",
+                                        "label": "Patient Email"
+                                    },
+                                    {
+                                        "name": "Symptoms",
+                                        "type": "text",
+                                        "label": "Symptoms",
+                                        "multiline": true
+                                    },
+                                    {
+                                        "name": "Specialist",
+                                        "type": "text",
+                                        "label": "Specialist"
+                                    },
+                                    {
+                                        "name": "Appointment Date",
+                                        "time": false,
+                                        "type": "date",
+                                        "label": "Appointment Date"
+                                    },
+                                    {
+                                        "name": "Appointment Time",
+                                        "type": "text",
+                                        "label": "Appointment Time"
+                                    },
+                                    {
+                                        "name": "Recurring Symptom",
+                                        "type": "boolean",
+                                        "label": "Recurring Symptom"
+                                    },
+                                    {
+                                        "name": "Medical History",
+                                        "type": "text",
+                                        "label": "Medical History",
+                                        "multiline": true
+                                    },
+                                    {
+                                        "name": "Medical Document",
+                                        "type": "text",
+                                        "label": "Medical Document"
+                                    },
+                                    {
+                                        "name": "Terms & Conditions",
+                                        "type": "text",
+                                        "label": "Terms & Conditions"
+                                    },
+                                    {
+                                        "name": "Doctor",
+                                        "spec": {
+                                            "label": "Record ID"
+                                        },
+                                        "type": "array",
+                                        "label": "Doctor"
+                                    },
+                                    {
+                                        "name": "Doctor Name",
+                                        "type": "array",
+                                        "label": "Doctor Name"
+                                    },
+                                    {
+                                        "name": "Reminder Sent 24h",
+                                        "type": "boolean",
+                                        "label": "Reminder Sent 24h"
+                                    },
+                                    {
+                                        "name": "Check In Status",
+                                        "type": "text",
+                                        "label": "Check In Status"
+                                    },
+                                    {
+                                        "name": "Lab Tests",
+                                        "type": "text",
+                                        "label": "Lab Tests",
+                                        "multiline": true
+                                    },
+                                    {
+                                        "name": "Lab Processed",
+                                        "type": "boolean",
+                                        "label": "Lab Processed"
+                                    },
+                                    {
+                                        "name": "Lab Record",
+                                        "spec": {
+                                            "label": "Record ID"
+                                        },
+                                        "type": "array",
+                                        "label": "Lab Record"
+                                    },
+                                    {
+                                        "name": "Lab Results",
+                                        "type": "array",
+                                        "label": "Lab Results"
+                                    },
+                                    {
+                                        "name": "Diagnosis",
+                                        "type": "text",
+                                        "label": "Diagnosis",
+                                        "multiline": true
+                                    },
+                                    {
+                                        "name": "Prescription",
+                                        "type": "text",
+                                        "label": "Prescription",
+                                        "multiline": true
+                                    },
+                                    {
+                                        "name": "Prescription Status",
+                                        "type": "text",
+                                        "label": "Prescription Status"
+                                    },
+                                    {
+                                        "name": "Drug In Store",
+                                        "type": "text",
+                                        "label": "Drug In Store",
+                                        "multiline": true
+                                    },
+                                    {
+                                        "name": "Drug Not In Store",
+                                        "type": "text",
+                                        "label": "Drug Not In Store",
+                                        "multiline": true
+                                    },
+                                    {
+                                        "name": "Feedback",
+                                        "type": "text",
+                                        "label": "Feedback",
+                                        "multiline": true
+                                    }
+                                ]
+                            }
+                        },
+                        {
+                            "id": 21,
+                            "module": "google-email:ActionSendEmail",
+                            "version": 2,
+                            "parameters": {
+                                "account": 2257482
+                            },
+                            "mapper": {
+                                "cc": [],
+                                "to": [
+                                    "{{3.`Patient Email`[1]}}"
+                                ],
+                                "bcc": [],
+                                "from": "",
+                                "html": "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n    <title>Appointment Confirmation</title>\n</head>\n<body>\n    <p>Dear {{3.`Patient Name`[1]}},</p>\n\n    <p>Thank you for booking another appointment with MediCare. We are pleased to confirm your appointment details as follows:</p>\n\n    <h3>Appointment Details:</h3>\n    <ul>\n        <li>Date: {{3.`Appointment Date`}}</li>\n        <li>Time: {{3.`Appointment Time`}}</li>\n        <li>Specialist To See: {{3.Specialist}}</li>\n    </ul>\n\n    <p>If you have any questions or need to reschedule, please contact us at <a href=\"tel:+25471234567\">+25471234567</a> or <a href=\"mailto:medicare@mail.com\">medicare@mail.com</a>. We look forward to seeing you again.</p>\n\n    <p>Best regards,</p>\n    <p>MediCare</p>\n</body>\n</html>\n",
+                                "subject": "Your Appointment Confirmation with MediCare",
+                                "attachments": []
+                            },
+                            "metadata": {
+                                "designer": {
+                                    "x": 1800,
+                                    "y": 300
+                                },
+                                "restore": {
+                                    "expect": {
+                                        "cc": {
+                                            "mode": "chose"
+                                        },
+                                        "to": {
+                                            "mode": "chose",
+                                            "items": [
+                                                null
+                                            ]
+                                        },
+                                        "bcc": {
+                                            "mode": "chose"
+                                        },
+                                        "attachments": {
+                                            "mode": "chose"
+                                        }
+                                    },
+                                    "parameters": {
+                                        "account": {
+                                            "data": {
+                                                "scoped": "true",
+                                                "connection": "google-restricted"
+                                            },
+                                            "label": "Nina Google Restricted connection (ninaryan254@gmail.com)"
+                                        }
+                                    }
+                                },
+                                "parameters": [
+                                    {
+                                        "name": "account",
+                                        "type": "account:google-restricted",
+                                        "label": "Connection",
+                                        "required": true
+                                    }
+                                ],
+                                "expect": [
+                                    {
+                                        "name": "from",
+                                        "type": "text",
+                                        "label": "From"
+                                    },
+                                    {
+                                        "name": "to",
+                                        "spec": {
+                                            "name": "value",
+                                            "type": "email",
+                                            "label": "Email address",
+                                            "required": true
+                                        },
+                                        "type": "array",
+                                        "label": "To",
+                                        "required": true
+                                    },
+                                    {
+                                        "name": "subject",
+                                        "type": "text",
+                                        "label": "Subject"
+                                    },
+                                    {
+                                        "name": "html",
+                                        "type": "text",
+                                        "label": "Content"
+                                    },
+                                    {
+                                        "name": "attachments",
+                                        "spec": [
+                                            {
+                                                "name": "fileName",
+                                                "type": "filename",
+                                                "label": "File name",
+                                                "required": true,
+                                                "semantic": "file:name"
+                                            },
+                                            {
+                                                "name": "data",
+                                                "type": "buffer",
+                                                "label": "Data",
+                                                "required": true,
+                                                "semantic": "file:data"
+                                            },
+                                            {
+                                                "name": "cid",
+                                                "type": "text",
+                                                "label": "Content-ID"
+                                            }
+                                        ],
+                                        "type": "array",
+                                        "label": "Attachments"
+                                    },
+                                    {
+                                        "name": "cc",
+                                        "spec": {
+                                            "name": "value",
+                                            "type": "email",
+                                            "label": "Email address"
+                                        },
+                                        "type": "array",
+                                        "label": "Copy recipient"
+                                    },
+                                    {
+                                        "name": "bcc",
+                                        "spec": {
+                                            "name": "value",
+                                            "type": "email",
+                                            "label": "Email address"
+                                        },
+                                        "type": "array",
+                                        "label": "Blind copy recipient"
+                                    }
+                                ]
+                            }
+                        }
+                    ]
+                }
+            ]
+        }
+    ],
+    "metadata": {
+        "instant": true,
+        "version": 1,
+        "scenario": {
+            "roundtrips": 1,
+            "maxErrors": 3,
+            "autoCommit": true,
+            "autoCommitTriggerLast": true,
+            "sequential": false,
+            "slots": null,
+            "confidential": false,
+            "dataloss": false,
+            "dlq": false,
+            "freshVariables": false
+        },
+        "designer": {
+            "orphans": []
+        },
+        "zone": "eu2.make.com"
+    }
+}
